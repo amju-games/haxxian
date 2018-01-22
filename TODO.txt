@@ -1,0 +1,4 @@
+Resource manager, so we just have one copy of sprite data..?
+Sprite should point to a sprite sheet, not derive from it!!!
+Then we can share sprite sheets across multiple sprites.
+
