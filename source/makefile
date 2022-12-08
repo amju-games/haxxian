@@ -7,7 +7,7 @@ run:
 	./haxxian
 
 
-CC=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
+CC=clang++
 
 WARNINGS=-Wall -Wno-deprecated-declarations
 
@@ -16,9 +16,9 @@ INCLUDES=\
   -I../../lo-res \
   -I../../microlib
 
-CFLAGS=-c $(WARNINGS) $(INCLUDES) -std=c++11   -DMACOSX  -g -O0 -arch i386
+CFLAGS=-c $(WARNINGS) $(INCLUDES) -std=c++11   -DMACOSX  -g -O0 
 
-LDFLAGS=-framework OpenGL -framework GLUT -framework Carbon ../../microlib/libbass.dylib -arch i386
+LDFLAGS=-framework OpenGL -framework GLUT -framework Carbon libbass.dylib
 
 SOURCES=\
 baddie.cpp \
@@ -35,7 +35,7 @@ play_state.cpp \
 ../../lo-res/screen.cpp \
 ../../lo-res/sprite.cpp \
 ../../lo-res/sprite_sheet.cpp \
-../../microlib/BassSoundPlayer.cpp \
+../../microlib/sound_player_bass24.cpp \
 ../../microlib/directory.cpp \
 ../../microlib/file_string_utils.cpp \
 ../../microlib/game.cpp \
@@ -48,6 +48,7 @@ OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=haxxian
 
 haxxian_exe: $(SOURCES) $(EXECUTABLE)
+	install_name_tool -add_rpath @executable_path/ $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
