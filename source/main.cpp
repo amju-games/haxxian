@@ -10,6 +10,7 @@
 #include "globals.h"
 #include "input.h"
 #include "play_state.h"
+#include "sound_player_bass24.h"
 #include "sprite.h"
 
 // Size of window in actual device pixels
@@ -206,7 +207,7 @@ int main(int argc, char** argv)
   // Must update once before draw
   update();
 
-  the_sound_player = new BassSoundPlayer;
+  the_sound_player = new sound_player_bass24;
 
   // Play background music
   const bool LOOP = true;
