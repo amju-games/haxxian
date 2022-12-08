@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+#include "sound_player.h"
 #include "font.h"
 #include "game.h"
 #include "palette.h"
@@ -13,7 +15,7 @@ extern game the_game;
 extern timer the_timer;
 extern font the_font;
 extern palette the_global_palette;
-extern play_state* the_play_state;
+extern std::unique_ptr<play_state> the_play_state;
 extern screen the_screen;
 extern timer the_timer;
 
